@@ -8,8 +8,8 @@ var CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
     entry:{
-        // polyfills: '.src/polyfills.ts',
-        // vendor: './src/vendor.ts',
+        polyfills: './src/polyfills.ts',
+        vendor: './src/vendor.ts',
         app: './src/main.ts'        
     },
     output: {
@@ -37,6 +37,16 @@ module.exports = {
         rules: [
             { 
                 test: /\.scss$/,
+                exclude: [path.resolve(__dirname, "src/styles")],
+                use: [
+                    'to-string-loader',
+                    'css-loader',
+                    'sass-loader'
+                ]
+            },
+            { 
+                test: /\.scss$/,
+                include: [path.resolve(__dirname, "src/styles")],
                 use: [
                     'style-loader',
                     'css-loader',
@@ -71,6 +81,14 @@ module.exports = {
             }
         ]
     },
+
+    optimization: {
+        splitChunks: {
+            name: 'angular-chunck',
+            chunks: "all"
+        }
+    },
+
     plugins: [
         // new webpack.ProvidePlugin({ //for providing special names of 3d party libs
             // $: 'jquery'
