@@ -82,7 +82,7 @@ module.exports = {
         ]
     },
 
-    optimization: {
+    optimization: { //TODO: check docs when created
         splitChunks: {
             name: 'angular-chunck',
             chunks: "all"
