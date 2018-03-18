@@ -72,8 +72,21 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                            name: '[name].[ext]',
+                            name: '[name].[hash].[ext]',
                             outputPath: 'img/',
+                            publicPath: ''
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(ttf|woff|woff2)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[hash].[ext]',
+                            outputPath: 'fonts/',
                             publicPath: ''
                         }
                     }
